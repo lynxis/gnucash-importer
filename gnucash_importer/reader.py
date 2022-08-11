@@ -12,6 +12,7 @@ class CSVReader(object):
         ACCOUNT = 'account'
         COMMODITY = 'commodity'
         MEMO = 'memo'
+        NUMBER = 'number'
         VALUE = 'value'
         AMOUNT = 'amount'
 
@@ -31,10 +32,12 @@ class CSVReader(object):
                 date = datetime.datetime.strptime(date, '%m/%d/%Y')
                 description = row[CSVReader.Headers.DESC.value]
                 commodity = row[CSVReader.Headers.COMMODITY.value]
+                number = row[CSVReader.Headers.NUMBER.value]
                 trans = transaction.RawTransaction(
                         date=date,
                         description=description,
-                        commodity=commodity)
+                        commodity=commodity,
+                        number=number)
             # add current split
             account = row[CSVReader.Headers.ACCOUNT.value]
             memo = row[CSVReader.Headers.MEMO.value]

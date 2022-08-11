@@ -38,9 +38,10 @@ class RawSplit(object):
 
 
 class RawTransaction(object):
-    def __init__(self, date, description, commodity, splits=None):
+    def __init__(self, date, description, commodity, number, splits=None):
         self.date = date
         self.description = description
+        self.number = number
         self.commodity = commodity
         self.splits = splits
 
@@ -71,6 +72,7 @@ class RawTransaction(object):
         trans.SetDate(self.date.day, self.date.month, self.date.year)
         trans.SetCurrency(commodity)
         trans.SetDescription(self.description)
+        trans.SetNum(self.number)
 
         for idx, split in enumerate(self.splits):
             split.create_split(book, trans, not_cleared=idx > 0 or not_cleared)

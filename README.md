@@ -60,6 +60,8 @@ We use a file format similar to the GnuCash exported CSVs. In particular, the ac
   - the date of the transaction, in mm/dd/yyyy format (e.g., `08/30/2020`)
 - **description**
   - the description of the transaction (e.g., `Buy a laptop`)
+- **number**
+  - the number of the transaction (e.g. invoice number)
 - **commodity**
   - the main commodity/currency of the transaction, which is the unit of the **value** field (e.g., `CURRENCY::USD`)
 - **account**
@@ -71,16 +73,16 @@ We use a file format similar to the GnuCash exported CSVs. In particular, the ac
 - **amount**
   - when the target account has a different unit from the main commodity/currency, use the **amount** field to represent the converted amount deposited into the account
 
-Similar to the GnuCash exported CSVs, **date**, **description**, and **commodity** only need to be specified once for each transaction. The splits of the transaction are represented by the other fields. An example CSV file is as follows:
+Similar to the GnuCash exported CSVs, **date**, **description**, **number** and **commodity** only need to be specified once for each transaction. The splits of the transaction are represented by the other fields. An example CSV file is as follows:
 
 ```
-date,description,commodity,memo,account,amount,value
-09/24/2020,Purchase VTI,CURRENCY::USD,,Assets:Current Assets:Cash Account:TD Ameritrade,,-2500.00
-,,,,Assets:Investments:Stock:VTI,10,2500.00
-09/07/2020,BND Dividend,CURRENCY::USD,,Assets:Current Assets:Cash Account:TD Ameritrade,,70.00
-,,,,Income:Dividend Income:Dividend Income USD:BND Dividend,,-100.00
-,,,,Assets:Investments:Bond:BND,,
-,,,W-8 Tax Withholding - BND,Expenses:Taxes:Federal:Taxes Withholding:Taxes Withholding USD:2020 Taxes Withholding USD,,30.00
+date,number,description,commodity,memo,account,amount,value
+09/24/2020,,Purchase VTI,CURRENCY::USD,,Assets:Current Assets:Cash Account:TD Ameritrade,,-2500.00
+,,,,,Assets:Investments:Stock:VTI,10,2500.00
+09/07/2020,,BND Dividend,CURRENCY::USD,,Assets:Current Assets:Cash Account:TD Ameritrade,,70.00
+,,,,,Income:Dividend Income:Dividend Income USD:BND Dividend,,-100.00
+,,,,,Assets:Investments:Bond:BND,,
+,,,,W-8 Tax Withholding - BND,Expenses:Taxes:Federal:Taxes Withholding:Taxes Withholding USD:2020 Taxes Withholding USD,,30.00
 ```
 Two transactions are represented by the above CSV file:
 
